@@ -6,7 +6,7 @@ import {
     FormControlLabel, FormGroup,
     Switch,
     ThemeProvider,
-    Toolbar, Typography
+    Toolbar
 } from "@material-ui/core";
 import MenuTop, {LayoutMain} from "./MenuTop";
 import {BrowserRouter as Router} from "react-router-dom";
@@ -17,7 +17,7 @@ export default function Layout() {
         palette: {
             background: {
                 paper: '#002241',
-                default: '#001e3c'
+                default: '#3c4e62'
             },
             text: {
                 primary: '#fff'
@@ -41,34 +41,37 @@ export default function Layout() {
 
     return (
         <Router>
-        <ThemeProvider theme={dark === true ? themeDark : themeLight}>
-            <CssBaseline />
-            <AppBar position="fixed"
-                    sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-                    color={"inherit"}
-            >
-                <Container maxWidth="xl">
-                    <Toolbar>
-                        <MenuTop />
-                        <FormGroup>
-                            <FormControlLabel
-                                control={<Switch sx={{m:1}} defaultChecked color="secondary"/>}
-                                onChange={handleChange}
-                                onClick={dark === true ? ()=>{setDark(false)} : () =>{setDark(true)}}
-                                value={labelTheme}
-                                label={labelTheme}
-                            />
-                        </FormGroup>
-                    </Toolbar>
+            <ThemeProvider theme={dark === true ? themeDark : themeLight}>
+                <CssBaseline />
+                <AppBar position="fixed"
+                        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+                        color={"inherit"}
+                >
+                    <Container maxWidth="xl">
+                        <Toolbar>
+                            <MenuTop />
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={<Switch sx={{m:1}} defaultChecked color="secondary"/>}
+                                    onChange={handleChange}
+                                    onClick={dark === true ? ()=>{setDark(false)} : () =>{setDark(true)}}
+                                    value={labelTheme}
+                                    label={labelTheme}
+                                />
+                            </FormGroup>
+                        </Toolbar>
 
-                </Container>
-            </AppBar>
-            <Box component="main" sx={{ flexGrow: 1, p: 1 }} style={{marginTop: "80px", minHeight:"900px"}}>
-                <Container>
-                    <LayoutMain />
-                </Container>
-            </Box>
-        </ThemeProvider>
+                    </Container>
+                </AppBar>
+                <Box component="main" sx={{ flexGrow: 1, p: 1 }} style={{marginTop: "80px", minHeight:"900px"}}>
+                    <Container>
+                        <LayoutMain />
+                    </Container>
+                </Box>
+            </ThemeProvider>
         </Router>
+
     )
 }
+
+
