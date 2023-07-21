@@ -6,7 +6,7 @@ import {Button, TextField} from "@mui/material";
 export default function Calculator() {
     const [inputKeyboard, setInputKeybord] = useState(0);
     const [modeSend, setModeSend] = useState(false);
-    const [resultAdd, setResulAdd] = useState(0);
+    const [resultAdd, setResultAdd] = useState(0);
     const changeResult = (newResult) => {
         setResulAdd(newResult)
     }
