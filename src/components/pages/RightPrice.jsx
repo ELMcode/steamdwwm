@@ -38,26 +38,26 @@ export default function RightPrice() {
     const handleClick = () => {
 
         if (myPrice === "123cheat") alert(`"cheat Mode": ${randomPrice} €.`)
-        if (myPrice < randomPrice) setMessage('plus')
-        if (myPrice > randomPrice) setMessage('moins')
-        if (myPrice == randomPrice) setMessage('gagne')
+        if (myPrice < randomPrice) setMessage('plus !')
+        if (myPrice > randomPrice) setMessage('moins !')
+        if (myPrice == randomPrice) setMessage('gagné !')
     }
 
     return (
         <div>
-            <h1>Right Price Coming soon</h1>
+            <h1>Le juste prix</h1>
             {messageCategory && messageCategory}<br/>
             <TextField
                 color={"success"}
                 variant={"outlined"}
-                //label={"Hello"}
-                defaultValue={"Quel est votre prix"}
+                abel={"Prix ?"}
+                defaultValue={""}
                 onChange={event => setMyprice(event.target.value)}
                 /><br/>
             <Button onClick={handleClick}>Envoyer</Button>
-            {message && message === 'plus' ? <Alert variant={"filled"} severity={"info"}>C'est plus</Alert>
-                        : message === 'moins' ? <Alert variant={"filled"} severity={"warning"}>C'est moins</Alert>
-                        :  <Alert variant={"filled"} severity={"success"}>C'est gagné!!!!</Alert>
+            {message && message === 'plus' ? <Alert variant={"filled"} severity={"info"}>C'est plus !</Alert>
+                        : message === 'moins' ? <Alert variant={"filled"} severity={"warning"}>C'est moins !</Alert>
+                        :  <Alert variant={"filled"} severity={"success"}>Bravo, vous avez gagné !</Alert>
             }
         </div>
     )
