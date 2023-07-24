@@ -7,6 +7,11 @@ export default function Calculator() {
     const [inputKeyboard, setInputKeybord] = useState(0);
     const [modeSend, setModeSend] = useState(false);
     const [resultAdd, setResultAdd] = useState(0);
+
+    function setResulAdd(newResult) {
+        
+    }
+
     const changeResult = (newResult) => {
         setResulAdd(newResult)
     }
