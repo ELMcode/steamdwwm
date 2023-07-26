@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Cards from "../common/Cards"
-
+import Cookies from 'universal-cookie';
 
 export default function Memory() {
 
@@ -70,7 +70,7 @@ export default function Memory() {
             <>
                 {Array.from(cards).map(([key, value]) => {
                     const cardPos = "c" + c + "r" + r;
-                    if (c == 3) {
+                    if (c === 3) {
                         r++;
                         c = 1;
                     } else {
@@ -111,4 +111,3 @@ export default function Memory() {
         </div>
     )
 }
-

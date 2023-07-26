@@ -1,27 +1,25 @@
-import {useState} from "react";
+import React, {useState, useEffect} from "react";
+import Grid from "../common/Grid";
+import GifImage from "../common/gif/GifImage";
 
-export default function Gif(){
+export default function Gif() {
+    const [started, setStarted] = useState(false);
+    const [images, setImages] = useState([]);
 
-    const [data,setData]=useState([]);
-    const [started,setStarted]=useState(false)
-
-    const getGif = async()=>{
-        if (!started){
+    const getGif = async () => {
+        if (!started) {
             setStarted(true);
-        var response = await fetch("https://api.giphy.com/v1/gifs/search?api_key=lV037QsCl68DVDWbpwWfkvQYN8GASzjG&q=coucou&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips");
-        var json = await response.json();
-       const gifUrl=json.data.map((gif)=> gif.images.original.url);
-       setData(gifUrl)
+            const response = await fetch(
+                "https://api.giphy.com/v1/gifs/search?api_key=lV037QsCl68DVDWbpwWfkvQYN8GASzjG&q=chat&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips"
+            );
+            const json = await response.json();
+            setImages(json["data"].map((item) => <GifImage item={item}/>));
         }
-    }
+    };
 
-    getGif();
+    useEffect(() => {
+        getGif();
+    }, []);
 
-    return (
-        <div>
-            {data.map((gifUrl) => (
-            <img key={gifUrl} src={gifUrl} alt="GIF" />
-            ))}
-        </div>
-    );
+    return (<Grid size={5} components={images}/>);
 }

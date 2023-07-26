@@ -11,16 +11,20 @@ import Crabs from "../pages/Crabs";
 import Memory from "../pages/Memory";
 import CoockieClicker from "../pages/CoockieClicker";
 import Gif from "../pages/Gif";
+import ReduxPages from "../reducer/ReduxPages";
+import CarClicker from "../pages/CarClicker";
 
 const itemMenus=[
     {key:"1", path:"/", label:"Accueil"},
-    {key:"2", path:"/rightPrice", label:"Le juste prix"},
-    {key:"3", path:"/calculator", label:"Calculator"},
-    {key:"4", path:"/crabs", label:"Morpion"},
-    {key:"5", path: "/documentation", label:"Documents"},
-    {key:"7", path: "/memory", label:"Memory"},
-    {key:"7", path: "/cookieClicker", label:"CookieClicker"},
-    {key:"8", path: "/gif", label:"Gif"}
+    //{key:"2", path:"/rightPrice", label:"Le juste prix"},
+    {key:"2", path:"/calculator", label:"Calculator"},
+    //{key:"4", path:"/crabs", label:"Morpion"},
+    //{key:"5", path: "/documentation", label:"Documents"},
+    {key:"3", path: "/memory", label:"Memory"},
+    {key:"4", path: "/cookieClicker", label:"CookieClicker"},
+    {key:"5", path: "/gif", label:"Gif"},
+    {key:"6", path: "/redux", label:"Redux"},
+    {key:"7", path: "/carClicker", label:"CarClicker"}
 ];
 
 export default function MenuTop() {
@@ -60,18 +64,20 @@ export default function MenuTop() {
 }
 export function LayoutMain() {
     return (
-       <>
-           <Routes>
-               <Route index element={<Home/>}/>
-               <Route path={"/rightPrice"} element={<RightPrice/>}/>
-               <Route path={"/calculator"} element={<Calculator/>}/>
-               <Route path={"/crabs"} element={<Crabs/>}/>
-               <Route path={"/documentation"} element={<Documentation/>}/>
-               <Route path={"/memory"} element={<Memory/>}/>
-               <Route path={"/cookieClicker"} element={<CoockieClicker/>}/>
-               <Route path={"/gif"} element={<Gif/>}/>
-           </Routes>
-       </>
+        <>
+            <Routes>
+                <Route index element={<Home/>}/>
+                <Route path={"/rightPrice"} element={<RightPrice/>}/>
+                <Route path={"/calculator"} element={<Calculator/>}/>
+                <Route path={"/crabs"} element={<Crabs/>}/>
+                <Route path={"/documentation"} element={<Documentation/>}/>
+                <Route path={"/memory"} element={<Memory/>}/>
+                <Route path={"/cookieClicker"} element={<CoockieClicker/>}/>
+                <Route path={"/gif"} element={<Gif/>}/>
+                <Route path={"/redux"} element={<ReduxPages/>}/>
+                <Route path={"/carClicker"} element={<CarClicker/>}></Route>
+            </Routes>
+        </>
     )
 
 }

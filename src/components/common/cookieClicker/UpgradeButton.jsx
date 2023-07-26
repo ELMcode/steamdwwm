@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Button} from "@mui/material"
 
-export default function UpgradeButton({score, setScore, clickPower, setClickPower   }) {
+export default function UpgradeButton({score, setScore, clickPower, setClickPower, setRestarted}) {
 
     // On définit les variables pour modifier la couleur du bouton en fonction de sa
     // disponnibilité
@@ -36,12 +36,14 @@ export default function UpgradeButton({score, setScore, clickPower, setClickPowe
             setClickCost(clickCost * 3);
             setScore(score - clickCost);
         }
+        setRestarted(true);
     }
 
     return (
-        <div style={{gridColumn: 2, gridRow: 2}}>
-            <Button onClick={handleClick} variant="contained" color={color}>Amélioration
-                : {clickCost}</Button>
+        <div  style={{marginBottom: "2vh"}}>
+            <Button onClick={handleClick} variant="contained" color={color}>
+                Amélioration : {clickCost}
+            </Button>
         </div>
     );
 }
