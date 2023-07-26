@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {Box} from "@mui/material";
 import ApiDogs from "../Api/ApiDogs";
 
 export default function AdditionLevel({changeResult}) {
@@ -8,32 +7,32 @@ export default function AdditionLevel({changeResult}) {
     const [resultAdd, setResultAdd] = useState("")
 
     const randomNumbers = () => {
-        const _firstNum = Math.round(Math.random()*(1,200));
+        const _firstNum = Math.round(Math.random() * (1, 200));
         setFirstNum(_firstNum);
-        const _secondNum = Math.round(Math.random()*(1,200));
+        const _secondNum = Math.round(Math.random() * (1, 200));
         setSecondNum(_secondNum)
 
 
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         if (firstNum === 0) randomNumbers()
-        if (firstNum >0 ) setResultAdd(firstNum + secondNum)
-    },[firstNum, secondNum])
+        if (firstNum > 0) setResultAdd(firstNum + secondNum)
+    }, [firstNum, secondNum])
 
     const changeResultNow = () => {
         changeResult({resultAdd})
     }
 
-    useEffect(()=>{
-        if(changeResult) changeResultNow()
+    useEffect(() => {
+        if (changeResult) changeResultNow()
     }, [resultAdd])
     //log
-    useEffect(()=> {
+    useEffect(() => {
         console.log("premier chiffre", firstNum);
         console.log("deuxieme chiffre", secondNum);
         console.log("Resultat addition", resultAdd);
-    },[firstNum, secondNum, resultAdd])
+    }, [firstNum, secondNum, resultAdd])
 
     return (
         <>
@@ -57,7 +56,7 @@ export function DataProcess({inputKeyword, resultAdd}) {
 
     }, [inputKeyword, resultAdd])
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log("Message", message)
     }, [message])
 
