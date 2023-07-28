@@ -1,31 +1,36 @@
-import React from 'react';
-import { connect } from 'react-redux'; // Importer la fonction connect de react-redux
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchDataFromFirestore } from '../db/action';
 
-const App = ({ counter, text, increment, decrement, changeText }) => {
+const YourComponent = ({ data, loading, error, fetchDataFromFirestore }) => {
+    useEffect(() => {
+        fetchDataFromFirestore();
+    }, [fetchDataFromFirestore]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
     return (
         <div>
-            <h1>{text} {counter}</h1> {/* Afficher le texte et la valeur du compteur */}
-            <button onClick={increment}>Increment</button> {/* Déclencher l'action INCREMENT lorsque le bouton est cliqué */}
-            <button onClick={decrement}>Decrement</button> {/* Déclencher l'action DECREMENT lorsque le bouton est cliqué */}
-            <button onClick={changeText}>Change Text</button> {/* Déclencher l'action CHANGE_TEXT lorsque le bouton est cliqué */}
+            {/* Utilisez les données de votre store Redux ici */}
+            {data.map((item) => (
+                <div key={item.id}>{item.name}</div>
+            ))}
         </div>
     );
 };
 
 const mapStateToProps = (state) => {
     return {
-        counter: state.counter, // Extraire la propriété "counter" de l'état global et la mapper à la propriété "counter" du composant
-        text: state.text, // Extraire la propriété "text" de l'état global et la mapper à la propriété "text" du composant
+        data: state.data.data,
+        loading: state.data.loading,
+        error: state.data.error,
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        increment: () => dispatch({ type: 'INCREMENT' }), // Mapper l'action INCREMENT à la fonction de dispatch "increment"
-        decrement: () => dispatch({ type: 'DECREMENT' }), // Mapper l'action DECREMENT à la fonction de dispatch "decrement"
-        changeText: () => dispatch({ type: 'CHANGE_TEXT' }), // Mapper l'action CHANGE_TEXT à la fonction de dispatch "changeText"
-    };
-};
-
-// Connecter le composant App au store Redux en utilisant la fonction connect
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, { fetchDataFromFirestore })(YourComponent);
